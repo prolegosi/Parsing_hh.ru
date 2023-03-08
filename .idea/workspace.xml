@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="84bb03e2-9844-4010-8670-45fec5fc5780" name="Changes" comment="add function create regions" />
+    <list default="true" id="84bb03e2-9844-4010-8670-45fec5fc5780" name="Changes" comment="add bd">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/function.py" beforeDir="false" afterPath="$PROJECT_DIR$/function.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parser.db" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -165,7 +169,21 @@
       <option name="project" value="LOCAL" />
       <updated>1678288357398</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="add bd">
+      <created>1678288600231</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1678288600231</updated>
+    </task>
+    <task id="LOCAL-00010" summary="add bd">
+      <created>1678288667561</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1678288667561</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -175,6 +193,7 @@
     <MESSAGE value="Job_list =&gt; list_from_api" />
     <MESSAGE value="add pandas" />
     <MESSAGE value="add function create regions" />
-    <option name="LAST_COMMIT_MESSAGE" value="add function create regions" />
+    <MESSAGE value="add bd" />
+    <option name="LAST_COMMIT_MESSAGE" value="add bd" />
   </component>
 </project>

@@ -12,9 +12,8 @@ def list_from_api(url, par=None):
         out = out['items']
     return out
 
-
-def city_list(lst):
-
+# Создание базы данных кодов регионов
+def city_list(lst,name_table):
     try:
         con = sqlite3.connect('parser.db')
         cur = con.cursor()
@@ -24,23 +23,22 @@ def city_list(lst):
 
 
     try:
-        cur.execute(f"""CREATE TABLE regions (
+        cur.execute(f"""CREATE TABLE {name_table} (
         id INTEGER PRIMARY KEY,
         name TEXT
         )""")
     except sqlite3.OperationalError:
         print('Таблица уже создана')
 
-
     for i in lst:
         try:
-            cur.execute(f"""INSERT INTO regions VALUES ({int(i['id'])},'{i['name']}')""")
+            cur.execute(f"""INSERT INTO {name_table} VALUES ({int(i['id'])},'{i['name']}')""")
         except sqlite3.IntegrityError:
             print(f"Уже содержит {int(i['id'])},'{i['name']}'")
 
         for j in i['areas']:
             try:
-                cur.execute(f"""INSERT INTO regions VALUES ({int(j['id'])},'{j['name']}')""")
+                cur.execute(f"""INSERT INTO {name_table} VALUES ({int(j['id'])},'{j['name']}')""")
             except sqlite3.IntegrityError:
                 print(f"Уже содержит {int(j['id'])},'{j['name']}'")
 
@@ -57,4 +55,4 @@ params = {'text': job, 'area': '113', 'per_page': '10'}
 c = list_from_api(url_api, params)
 d = list_from_api(url_area)
 
-city_list(d)
+city_list(d, 'area')
