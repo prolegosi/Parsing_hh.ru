@@ -1,6 +1,5 @@
 import requests
 import json
-import pandas as pd
 import sqlite3
 
 
@@ -8,12 +7,19 @@ import sqlite3
 def list_from_api(url, par=None):
     r = requests.get(url, params=par)
     out = json.loads(r.text)
-    if type(out) == dict:
+    if type(out) == dict and len(out) > 1:
         out = out['items']
+    elif type(out) == dict and len(out) == 1:
+        out = out['categories']
     return out
 
 # Создание базы данных кодов регионов
-def city_list(lst,name_table):
+def create_table(lst, name_table):
+    position = name_table
+    # Исключение для списка профессий, данные c ip имеют немного разный формат
+    if name_table == 'professional_roles':
+        position = 'roles'
+
     try:
         con = sqlite3.connect('parser.db')
         cur = con.cursor()
@@ -30,13 +36,16 @@ def city_list(lst,name_table):
     except sqlite3.OperationalError:
         print('Таблица уже создана')
 
+
     for i in lst:
         try:
             cur.execute(f"""INSERT INTO {name_table} VALUES ({int(i['id'])},'{i['name']}')""")
         except sqlite3.IntegrityError:
             print(f"Уже содержит {int(i['id'])},'{i['name']}'")
 
-        for j in i['areas']:
+        if name_table == 'professional_roles':
+            position = 'roles'
+        for j in i[position]:
             try:
                 cur.execute(f"""INSERT INTO {name_table} VALUES ({int(j['id'])},'{j['name']}')""")
             except sqlite3.IntegrityError:
@@ -46,13 +55,19 @@ def city_list(lst,name_table):
     cur.close()
 
 url_api = 'https://api.hh.ru/vacancies'
-url_area = "https://api.hh.ru/areas/"
+url_area = 'https://api.hh.ru/areas/'
+url_prof = 'https://api.hh.ru/professional_roles/'
+job = ["'python'"]
+per_page = 100
+params = {'text': job, 'area': '113', 'per_page': per_page}
 
-job = ["'python' and 'стажёр'"]
 
-params = {'text': job, 'area': '113', 'per_page': '10'}
+if __name__ == '__main__':
 
-c = list_from_api(url_api, params)
-d = list_from_api(url_area)
+    job_list = list_from_api(url_api, params)
+    area_list = list_from_api(url_area)
+    prof_list = list_from_api(url_prof)
 
-city_list(d, 'area')
+    create_table(area_list, 'areas')
+    create_table(prof_list, 'professional_roles')
+
