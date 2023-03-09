@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="84bb03e2-9844-4010-8670-45fec5fc5780" name="Changes" comment="rename table_1">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/function.py" beforeDir="false" afterPath="$PROJECT_DIR$/function.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parser.db" beforeDir="false" />
-    </list>
+    <list default="true" id="84bb03e2-9844-4010-8670-45fec5fc5780" name="Changes" comment="redesigned function create_table" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -197,7 +193,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678290912525</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="redesigned function create_table">
+      <created>1678296512622</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1678296512622</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -210,6 +213,7 @@
     <MESSAGE value="add bd" />
     <MESSAGE value="rename table" />
     <MESSAGE value="rename table_1" />
-    <option name="LAST_COMMIT_MESSAGE" value="rename table_1" />
+    <MESSAGE value="redesigned function create_table" />
+    <option name="LAST_COMMIT_MESSAGE" value="redesigned function create_table" />
   </component>
 </project>
