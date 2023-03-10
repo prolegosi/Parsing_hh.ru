@@ -57,8 +57,8 @@ def create_table(lst, name_table):
 url_api = 'https://api.hh.ru/vacancies'
 url_area = 'https://api.hh.ru/areas/'
 url_prof = 'https://api.hh.ru/professional_roles/'
-job = ["'python'"]
-per_page = 100
+job = ["'python' and 'стажёр'"]
+per_page = 10
 params = {'text': job, 'area': '113', 'per_page': per_page}
 
 
@@ -70,4 +70,5 @@ if __name__ == '__main__':
 
     create_table(area_list, 'areas')
     create_table(prof_list, 'professional_roles')
-
+    for i in job_list:
+        print(i)
