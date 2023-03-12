@@ -13,6 +13,7 @@ def list_from_api(url, par=None):
         out = out['categories']
     return out
 
+
 # Создание базы данных кодов регионов
 def create_table(lst, name_table):
     position = name_table
@@ -23,10 +24,9 @@ def create_table(lst, name_table):
     try:
         con = sqlite3.connect('parser.db')
         cur = con.cursor()
-    except :
+    except:
         cur.close()
         print('Ошибка подключения к базе данных')
-
 
     try:
         cur.execute(f"""CREATE TABLE {name_table} (
@@ -35,7 +35,6 @@ def create_table(lst, name_table):
         )""")
     except sqlite3.OperationalError:
         print('Таблица уже создана')
-
 
     for i in lst:
         try:
@@ -54,13 +53,13 @@ def create_table(lst, name_table):
     con.commit()
     cur.close()
 
+
 url_api = 'https://api.hh.ru/vacancies'
 url_area = 'https://api.hh.ru/areas/'
 url_prof = 'https://api.hh.ru/professional_roles/'
 job = ["'python' and 'стажёр'"]
 per_page = 10
 params = {'text': job, 'area': '113', 'per_page': per_page}
-
 
 if __name__ == '__main__':
 

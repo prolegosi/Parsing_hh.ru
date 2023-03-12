@@ -5,11 +5,16 @@ from kivy.uix.button import Button
 from kivy.uix.textinput import TextInput
 from kivy.core.window import Window
 from kivy.uix.screenmanager import ScreenManager, Screen
-from kivy.uix.floatlayout import FloatLayout
+from kivy.uix.gridlayout import GridLayout
+from kivy.metrics import dp
+from kivy.uix.scrollview import ScrollView
+from kivy.lang import Builder
+from kivy.app import runTouchApp
+
 import back
 
-
 Window.clearcolor = (0.16, 0.17, 0.2)
+
 
 class JobsSkilApp(App):
     def build(self):
@@ -84,83 +89,89 @@ class FirstScreen(Screen):
         self.add_widget(main_layout)
 
     def to_second_scrn(self, *args):
-        print(self, *args)
+        area = self.input_1.text
+        key_jobs = self.input_2.text
+        print(area, key_jobs)
         self.manager.current = 'Two'  # selecting the screen by name (in this case by name "Second")
 
 
+KV = """
+ScrollView:
+
+    GridLayout:
+        id: box
+        size_hint_y: None
+        height: self.minimum_height
+        spacing: "5dp"
+        cols: 1
+"""
+
 
 class TwoScreen(Screen):
+
     def __init__(self):
         super().__init__()
         self.name = 'Two'
-        main_layout = BoxLayout(orientation="vertical",
-                                padding=15,
-                                spacing=15
-                                )
 
-        self.label_1 = Label(text='Порсмотренно 1000 вакансий',
-                             size_hint=(1, 1),
+        main_layout = GridLayout(
+            size_hint_y=None,
+            spacing=dp(10),
+            cols=1,
+            #height=dp(1150),
+            #row_default_height=dp(15)
+
+        )
+
+        """self.label_1 = Label(text='Порсмотренно 1000 вакансий',
+                             size_hint_y=None,
                              pos_hint={'center_x': .5, 'center_y': .5},
                              outline_color=[0, 0, 0],
                              outline_width=0.5,
-                             )
+                             )"""
+        main_layout.bind(minimum_height=main_layout.setter('height'))
+        for i in range(50):
+            main_layout.add_widget(Label(text=f'Введите названия профессий{i}',
+                                         size_hint_y=None,
+                                         height=dp(15),
+                                         ))
 
-
-
-        self.label_2 = Label(text='Введите названия профессий,\n    должностей через пробел',
-                             size_hint=(1, 1),
-                             pos_hint={'center_x': .5, 'center_y': .5},
-                             outline_color=[0, 0, 0],
-                             outline_width=0.5
-                             )
-
-
-
-        self.label_3 = Label(text='',
-                             size_hint=(1, 1),
+        """self.label_3 = Label(text='',
+                             size_hint_y=None,
                              pos_hint={'center_x': .5, 'center_y': .5}
-                             )
+                             )"""
 
-        self.button = Button(
-            size_hint=(.5, 1),
+        """self.button = Button(
+            size_hint_y=None,
             text='Назад',
             pos_hint={"center_x": 0.5, "center_y": 0.5},
             background_normal='',
             background_color=[0.18, 0.18, 0.2],
             on_press=self.to_second_scrn
-        )
+        )"""
 
-        self.label_4 = Label(text='',
+        """self.label_4 = Label(text='',
                              size_hint=(1, 1),
                              pos_hint={'center_x': .5, 'center_y': .5}
-                             )
+                             )"""
 
-        main_layout.add_widget(self.label_1)
+        # main_layout.add_widget(self.label_1)
 
-        main_layout.add_widget(self.label_2)
+        # main_layout.add_widget(self.label_2)
 
-        main_layout.add_widget(self.label_3)
-        main_layout.add_widget(self.button)
-        main_layout.add_widget(self.label_4)
+        # main_layout.add_widget(self.label_3)
+        # main_layout.add_widget(self.button)
+        # main_layout.add_widget(self.label_4)
+
         self.add_widget(main_layout)
 
     def to_second_scrn(self, *args):
-        print(self, *args)
         self.manager.current = 'First'  # selecting the screen by name (in this case by name "Second")
-
-
-
-
-
-
 
 
 sm = ScreenManager()
 
-#def set_screen(name_screen):
- #   sm.current = name_screen
-
-
+# def set_screen(name_screen):
+#   sm.current = name_screen
 
 
 if __name__ == "__main__":
