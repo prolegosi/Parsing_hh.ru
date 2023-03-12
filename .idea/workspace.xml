@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="84bb03e2-9844-4010-8670-45fec5fc5780" name="Changes" comment="add first page">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-    </list>
+    <list default="true" id="84bb03e2-9844-4010-8670-45fec5fc5780" name="Changes" comment="add two page" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -231,7 +228,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678553850356</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="add two page">
+      <created>1678607809732</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1678607809732</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -249,6 +253,7 @@
     <MESSAGE value="start create UI" />
     <MESSAGE value="daa start set ui" />
     <MESSAGE value="add first page" />
-    <option name="LAST_COMMIT_MESSAGE" value="add first page" />
+    <MESSAGE value="add two page" />
+    <option name="LAST_COMMIT_MESSAGE" value="add two page" />
   </component>
 </project>

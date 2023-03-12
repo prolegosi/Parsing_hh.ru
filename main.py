@@ -81,17 +81,22 @@ class FirstPage(Screen):
 
 
 class TwoPage(Screen):
-    def __int__(self):
+    def __int__(self, **kwargs):
+        super().__int__(**kwargs)
+        main_layout = BoxLayout(
 
+        )
 
 def set_screen(name_screen):
     sm.current = name_screen
 
+
 sm = ScreenManager()
 sm.add_widget(FirstPage(name='First_page'))
+
+
 class JobsSkilApp(App):
     def build(self):
-
         return sm
 
 
