@@ -5,13 +5,23 @@ from kivy.uix.button import Button
 from kivy.uix.textinput import TextInput
 from kivy.core.window import Window
 from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.uix.floatlayout import FloatLayout
+import back
+
 
 Window.clearcolor = (0.16, 0.17, 0.2)
 
+class JobsSkilApp(App):
+    def build(self):
+        sm.add_widget(FirstScreen())
+        sm.add_widget(TwoScreen())
+        return sm
 
-class FirstPage(Screen):
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
+
+class FirstScreen(Screen):
+    def __init__(self):
+        super().__init__()
+        self.name = 'First'
         main_layout = BoxLayout(orientation="vertical",
                                 padding=15,
                                 spacing=15
@@ -28,7 +38,7 @@ class FirstPage(Screen):
             size_hint=(1, 1),
             multiline=False,
             halign="right",
-            font_size=14,
+            font_size=14
         )
 
         self.label_2 = Label(text='Введите названия профессий,\n    должностей через пробел',
@@ -56,7 +66,7 @@ class FirstPage(Screen):
             pos_hint={"center_x": 0.5, "center_y": 0.5},
             background_normal='',
             background_color=[0.18, 0.18, 0.2],
-            on_press=self.click
+            on_press=self.to_second_scrn
         )
 
         self.label_4 = Label(text='',
@@ -73,31 +83,84 @@ class FirstPage(Screen):
         main_layout.add_widget(self.label_4)
         self.add_widget(main_layout)
 
-    def click(self, event):
-        a = self.input_1.text
-        b = self.input_2.text
-        set_screen('Two_page')
-        print(type(a), len(b))
+    def to_second_scrn(self, *args):
+        print(self, *args)
+        self.manager.current = 'Two'  # selecting the screen by name (in this case by name "Second")
 
 
-class TwoPage(Screen):
-    def __int__(self, **kwargs):
-        super().__int__(**kwargs)
-        main_layout = BoxLayout(
 
+class TwoScreen(Screen):
+    def __init__(self):
+        super().__init__()
+        self.name = 'Two'
+        main_layout = BoxLayout(orientation="vertical",
+                                padding=15,
+                                spacing=15
+                                )
+
+        self.label_1 = Label(text='Порсмотренно 1000 вакансий',
+                             size_hint=(1, 1),
+                             pos_hint={'center_x': .5, 'center_y': .5},
+                             outline_color=[0, 0, 0],
+                             outline_width=0.5,
+                             )
+
+
+
+        self.label_2 = Label(text='Введите названия профессий,\n    должностей через пробел',
+                             size_hint=(1, 1),
+                             pos_hint={'center_x': .5, 'center_y': .5},
+                             outline_color=[0, 0, 0],
+                             outline_width=0.5
+                             )
+
+
+
+        self.label_3 = Label(text='',
+                             size_hint=(1, 1),
+                             pos_hint={'center_x': .5, 'center_y': .5}
+                             )
+
+        self.button = Button(
+            size_hint=(.5, 1),
+            text='Назад',
+            pos_hint={"center_x": 0.5, "center_y": 0.5},
+            background_normal='',
+            background_color=[0.18, 0.18, 0.2],
+            on_press=self.to_second_scrn
         )
 
-def set_screen(name_screen):
-    sm.current = name_screen
+        self.label_4 = Label(text='',
+                             size_hint=(1, 1),
+                             pos_hint={'center_x': .5, 'center_y': .5}
+                             )
+
+        main_layout.add_widget(self.label_1)
+
+        main_layout.add_widget(self.label_2)
+
+        main_layout.add_widget(self.label_3)
+        main_layout.add_widget(self.button)
+        main_layout.add_widget(self.label_4)
+        self.add_widget(main_layout)
+
+    def to_second_scrn(self, *args):
+        print(self, *args)
+        self.manager.current = 'First'  # selecting the screen by name (in this case by name "Second")
+
+
+
+
+
+
 
 
 sm = ScreenManager()
-sm.add_widget(FirstPage(name='First_page'))
+
+#def set_screen(name_screen):
+ #   sm.current = name_screen
 
 
-class JobsSkilApp(App):
-    def build(self):
-        return sm
 
 
 if __name__ == "__main__":
