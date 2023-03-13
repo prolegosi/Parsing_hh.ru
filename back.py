@@ -28,16 +28,15 @@ def skill_list(job_list):
     """
     skill_list = []
     for i in job_list:
-        for j in i.items():
-            if j[0] == 'url':
-                key_skills = requests.get(j[1])
-                key_skills = json.loads(key_skills.text)
-                lst = []
-                for k in key_skills['key_skills']:
-                    lst.append(*k.values())
-                if len(lst) > 0:
-                    skill_list.append(lst)
-                break
+        url = i['url']
+        key_skills = requests.get(url)
+        key_skills = json.loads(key_skills.text)
+        lst = []
+        for k in key_skills['key_skills']:
+            lst.append(*k.values())
+        if len(lst) > 0:
+            skill_list.append(lst)
+
     return skill_list
 
 # Создание базы данных кодов регионов
@@ -90,7 +89,7 @@ url_api = 'https://api.hh.ru/vacancies'
 url_area = 'https://api.hh.ru/areas/'
 url_prof = 'https://api.hh.ru/professional_roles/'
 job = ["'python' and 'стажёр'"]
-per_page = 10
+per_page = 5
 params = {'text': job, 'area': '113', 'per_page': per_page}
 
 if __name__ == '__main__':
