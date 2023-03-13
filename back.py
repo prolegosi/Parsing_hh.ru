@@ -5,6 +5,12 @@ import sqlite3
 
 # получение списка данных из API
 def list_from_api(url, par=None):
+    """
+
+    :param url:
+    :param par:
+    :return:
+    """
     r = requests.get(url, params=par)
     out = json.loads(r.text)
     if type(out) == dict and len(out) > 1:
@@ -13,9 +19,35 @@ def list_from_api(url, par=None):
         out = out['categories']
     return out
 
+#функция получения списка скилов из списка вакансий
+def skill_list(job_list):
+    """
+
+    :param job_list:
+    :return:
+    """
+    skill_list = []
+    for i in job_list:
+        for j in i.items():
+            if j[0] == 'url':
+                key_skills = requests.get(j[1])
+                key_skills = json.loads(key_skills.text)
+                lst = []
+                for k in key_skills['key_skills']:
+                    lst.append(*k.values())
+                if len(lst) > 0:
+                    skill_list.append(lst)
+                break
+    return skill_list
 
 # Создание базы данных кодов регионов
 def create_table(lst, name_table):
+    """
+
+    :param lst:
+    :param name_table:
+    :return:
+    """
     position = name_table
     # Исключение для списка профессий, данные c ip имеют немного разный формат
     if name_table == 'professional_roles':
@@ -62,12 +94,14 @@ per_page = 10
 params = {'text': job, 'area': '113', 'per_page': per_page}
 
 if __name__ == '__main__':
-
     job_list = list_from_api(url_api, params)
     area_list = list_from_api(url_area)
     prof_list = list_from_api(url_prof)
 
     create_table(area_list, 'areas')
     create_table(prof_list, 'professional_roles')
-    for i in job_list:
-        print(i)
+    skills = skill_list(job_list)
+    print(skills)
+
+
+

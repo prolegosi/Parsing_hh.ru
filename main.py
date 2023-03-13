@@ -85,7 +85,7 @@ class FirstScreen(Screen):
         area = self.input_1.text
         key_jobs = self.input_2.text
         print(area, key_jobs)
-        self.manager.current = 'Two'  # selecting the screen by name (in this case by name "Second")
+        self.manager.current = 'Two'
 
 
 class TwoScreen(Screen):
@@ -117,7 +117,7 @@ class TwoScreen(Screen):
         self.add_widget(root)
 
     def to_second_scrin(self, *args):
-        self.manager.current = 'First'  # selecting the screen by name (in this case by name "Second")
+        self.manager.current = 'First'
 
 
 sm = ScreenManager()
