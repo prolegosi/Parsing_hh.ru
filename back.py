@@ -35,6 +35,7 @@ def skill_list(job_list):
     for i in job_list:
         url = i['url']
         key_skills = requests.get(url)
+        print(key_skills.raise_for_status())
         key_skills = json.loads(key_skills.text)
         lst = []
         for k in key_skills['key_skills']:
@@ -182,7 +183,7 @@ url_area = 'https://api.hh.ru/areas/'
 url_prof = 'https://api.hh.ru/professional_roles/'
 
 job = ["'frontend' and 'junior'"]
-per_page = 100
+per_page = 10
 params = {'text': job, 'area': '113', 'per_page': per_page}
 
 if __name__ == '__main__':
