@@ -35,7 +35,7 @@ def skill_list(job_list):
     for i in job_list:
         url = i['url']
         key_skills = requests.get(url)
-        print(key_skills.raise_for_status())
+        #print(key_skills.raise_for_status())
         key_skills = json.loads(key_skills.text)
         lst = []
         for k in key_skills['key_skills']:
