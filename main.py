@@ -1,5 +1,6 @@
 import back
 import os
+from matplotlib import pyplot as plt
 
 while True:
 
@@ -24,3 +25,4 @@ while True:
 
     skill_dict = back.sort_skill_dict(skills)
     print(skill_dict)
+
