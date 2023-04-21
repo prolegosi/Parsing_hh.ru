@@ -18,11 +18,13 @@ while True:
                         ':')
     jobs_string = back.job_processing(jobs_string)
 
-    per_page = 10
+    per_page = 100
     params = {'text': jobs_string, 'area': '113', 'per_page': per_page}
     job_list = back.list_from_api(back.url_api, params)
     skills = back.skill_list(job_list)
 
     skill_dict = back.sort_skill_dict(skills)
     print(skill_dict)
+    plt.plot( skill_dict.values(), skill_dict.keys())
+    plt.show()
 
