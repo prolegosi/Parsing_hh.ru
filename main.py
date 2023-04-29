@@ -18,13 +18,20 @@ while True:
                         ':')
     jobs_string = back.job_processing(jobs_string)
 
-    per_page = 100
+    per_page = 5
     params = {'text': jobs_string, 'area': '113', 'per_page': per_page}
     job_list = back.list_from_api(back.url_api, params)
     skills = back.skill_list(job_list)
 
     skill_dict = back.sort_skill_dict(skills)
-    print(skill_dict)
-    plt.plot( skill_dict.values(), skill_dict.keys())
+
+    #plt.barh(range(len(skill_dict.values())), skill_dict.values())
+    #plt.ylabel(skill_dict.keys())
+    labels = tuple(skill_dict.keys())
+    explode = tuple(x/50 for x in skill_dict.values())
+    print(explode)
+    plt.pie(skill_dict.values(), labels=labels, autopct='%1.1f%%', explode=explode)
+    plt.title(jobs_string + 'ключевые навыки')
+
     plt.show()
 

@@ -4,6 +4,7 @@ import sqlite3
 import textdistance
 
 
+
 def list_from_api(url, par=None):
     """
     Функция получает список данных из API
@@ -97,6 +98,7 @@ def create_table(lst, name_table):
 def sort_skill_dict(s_dict):
     """
         Сортирует словарь по уменьшению значения
+        Также обрезает словарь до 20-ти элементов
     :param s_dict: словарь
     :return: словарь отсортированный по убыванию
     """
@@ -110,6 +112,8 @@ def sort_skill_dict(s_dict):
 
     sort_dict = sorted(skill_dict.items(), key=lambda x: x[1])
     sort_dict = dict(sort_dict[::-1])
+    if len(sort_dict) > 10:
+        sort_dict = dict(tuple(sort_dict.items())[:10])
     return sort_dict
 
 
