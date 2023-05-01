@@ -4,6 +4,7 @@ import sqlite3
 import textdistance
 from matplotlib import pyplot as plt
 
+
 def list_from_api(url, par=None):
     """
     Функция получает список данных из API
@@ -35,7 +36,7 @@ def skill_list(job_list):
     for i in job_list:
         url = i['url']
         key_skills = requests.get(url)
-        #print(key_skills.raise_for_status())
+        # print(key_skills.raise_for_status())
         key_skills = json.loads(key_skills.text)
         lst = []
         for k in key_skills['key_skills']:
@@ -180,6 +181,21 @@ def job_processing(prof_input_str):
     return out
 
 
+def create_graph_img(skill_dict):
+    labels = tuple(skill_dict.keys())
+    explode = tuple(x / 1000 for x in skill_dict.values())
+
+    colors = ['#80302f', '#b84739', '#de704b', '#da7c49', '#f19b62', '#f5c266', '#eab186', '#cdad86', '#bdc0a5',
+              '#eadbc4']
+
+    fig, axe = plt.subplots()
+    fig.patch.set_facecolor('#2b2b2b')
+
+    axe.pie(skill_dict.values(), labels=labels, autopct='%1.1f%%', explode=explode, colors=colors, radius=1,
+            textprops={'color': 'w'})
+
+    plt.savefig('Graph')
+
 
 url_api = 'https://api.hh.ru/vacancies'
 url_area = 'https://api.hh.ru/areas/'
@@ -189,37 +205,26 @@ job = ["'frontend' and 'junior'"]
 per_page = 10
 params = {'text': job, 'area': '113', 'per_page': per_page}
 
-
-
-
-skill_dict = {'Python': 62, 'SQL': 26, 'Git': 21, 'Linux': 17, 'PostgreSQL': 15, 'Django Framework': 11, 'Английский язык': 9, 'Spark': 8, 'Docker': 8, 'JavaScript': 7}
+skill_dict = {'Python': 62, 'SQL': 26, 'Git': 21, 'Linux': 17, 'PostgreSQL': 15, 'Django Framework': 11,
+              'Английский язык': 9, 'Spark': 8, 'Docker': 8, 'JavaScript': 7}
 jobs_string_input = 'python junior'
 
 if __name__ == '__main__':
     print('Working')
 
-    #area, area_id = count_validation(string)
-    #job_list = list_from_api(url_api, params)
+    # area, area_id = count_validation(string)
+    # job_list = list_from_api(url_api, params)
     # area_list = list_from_api(url_area)
     # prof_list = list_from_api(url_prof)
 
-    #create_table(area_list, 'areas')
-    #create_table(prof_list, 'professional_roles')
+    # create_table(area_list, 'areas')
+    # create_table(prof_list, 'professional_roles')
 
-    #skills = skill_list(job_list)
-    #print(skills)
-    #skill_dict = sort_skill_dict(skills)
-    #print(skill_dict)
-    #print(area, area_id)
-    #print(job_processing(string))
-    labels = tuple(skill_dict.keys())
-    explode = tuple(x / 1000 for x in skill_dict.values())
-    print(skill_dict)
-    colors = ['#80302f', '#b84739', '#de704b', '#da7c49', '#f19b62', '#f5c266', '#eab186', '#cdad86', '#bdc0a5',
-              '#eadbc4']
-    fig, axe = plt.subplots()
-    fig.patch.set_facecolor('#2b2b2b')
+    # skills = skill_list(job_list)
+    # print(skills)
+    # skill_dict = sort_skill_dict(skills)
+    # print(skill_dict)
+    # print(area, area_id)
+    # print(job_processing(string))
 
-    axe.pie(skill_dict.values(), labels=labels, autopct='%1.1f%%', explode=explode, colors=colors, radius=1,
-            textprops={'color':'w'})
-    plt.show()
+    create_graph_img(skill_dict)

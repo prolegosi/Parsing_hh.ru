@@ -18,7 +18,7 @@ while True:
                         ':')
     jobs_string = back.job_processing(jobs_string_input)
 
-    per_page = 100
+    per_page = 10
     params = {'text': jobs_string, 'area': '113', 'per_page': per_page}
     job_list = back.list_from_api(back.url_api, params)
     skills = back.skill_list(job_list)
