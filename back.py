@@ -220,13 +220,6 @@ if __name__ == '__main__':
     fig, axe = plt.subplots()
     fig.patch.set_facecolor('#2b2b2b')
 
-    #plt.figure(figsize=(5, 4))
-
     axe.pie(skill_dict.values(), labels=labels, autopct='%1.1f%%', explode=explode, colors=colors, radius=1,
             textprops={'color':'w'})
-
-
-
-    #plt.pie(skill_dict.values(), labels=labels, autopct='%1.1f%%', explode=explode, colors=colors, radius=1)
-    #plt.title(jobs_string_input.capitalize() + '\n' + ' ключевые навыки')
     plt.show()
